@@ -6,39 +6,21 @@ etcd
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
-
+homelab_router_ip=192.168.1.1
+openshift_master_default_subdomain=ocp.lab.jomby.net
 # optional
-debug_level=4
-
-ansible_ssh_user=root
-
-openshift_deployment_type=openshift-enterprise
-oreg_auth_user=<userid>
-oreg_auth_password=<password>
-
-openshift_master_cluster_method=native
-
-openshift_master_default_subdomain=apps.hupiper.com
-
-openshift_metrics_install_metrics=true
-openshift_metrics_hawkular_hostname=hawkular-metrics.{{openshift_master_default_subdomain}}
-openshift_logging_install_logging=true
-
-openshift_enable_service_catalog=true
-
-openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra":"true"}
-
-openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+# debug_level=4
 
 # host group for masters
 [masters]
-master0.pokitoach.com
+master1.lab.jomby.net
 
 # host group for etcd
 [etcd]
-master0.pokitoach.com
+master1.lab.jomby.net
 
 # host group for nodes
 [nodes]
-master0.pokitoach.com openshift_node_group_name='node-config-master-infra'
-node0.pokitoach.com openshift_node_group_name='node-config-compute'
+master1.lab.jomby.net openshift_node_group_name='node-config-master-infra'
+node1.lab.jomby.net openshift_node_group_name='node-config-compute'
+node2.lab.jomby.net openshift_node_group_name='node-config-compute'
